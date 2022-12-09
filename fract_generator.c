@@ -6,11 +6,13 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:13:23 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/12/05 15:14:04 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:31:41 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+extern int zoom_ratio;
 
 t_z fonction(t_z z, t_z c)
 {
@@ -27,8 +29,7 @@ int julia(int x, int y, t_z c)
 	int     i;
 	float  d;
 
-	z.a = -2 + 4 * (float)x /WIDTH;
-	z.b = -2 + 4 * (float)y /HEIGHT;
+	z = pixel_in_complex(x, y, zoom_ratio);
 	i = 0;
 	while (i < maxIter)
 	{
@@ -50,8 +51,8 @@ int manderbrot(int x, int y)
 
 	z.a = 0;
 	z.b = 0;
-	c.a = -2 + 4 * (float)x / WIDTH;
-	c.b = -2 + 4 * (float)y / HEIGHT;
+	
+	c = pixel_in_complex(x, y, zoom_ratio);
 	//printf("x %d, y %d || c.a %f, c.b %f\n", x, y, c.a, c.b);
 	i = 0;
 	while (i < maxIter)
