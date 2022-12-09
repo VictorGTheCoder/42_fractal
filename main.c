@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:07:35 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/12/09 15:47:17 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:25:30 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,13 @@ int	threading(t_vars *vars, t_z	c)
 
 	//pthread_create(&t1, NULL, process, (void *) &value1);
 	//pthread_create(&t2, NULL, process, (void *) &value2);
-	pthread_create(&t1, NULL, construct_image, (void *) &img1);
+	//pthread_create(&t1, NULL, construct_image, (void *) &img1);
 	printf("1");
 	usleep(10000);
-	//pthread_create(&t2, NULL, construct_image, (void *) &img2);
+	pthread_create(&t2, NULL, construct_image, (void *) &img2);
 	printf("2");
 	pthread_join(t1, NULL);
-	//pthread_join(t2, NULL);
+	pthread_join(t2, NULL);
 	
 	//usleep(50000);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:10:51 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/12/09 15:48:26 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/12/09 16:24:27 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,19 @@
 void	*construct_image(void *imgtp)
 {
 	int pixel_bits;
-	t_image *img = imgtp;
+	t_image *img;
+	img = imgtp;
 	int line_bytes;
 	int endian;
 	char	*buffer;
 	int color;
 	int r;
-	void *image = mlx_new_image(img->vars->mlx, WIDTH, HEIGHT);
+	int image_x_size;
+	int image_y_size;
+
+	image_x_size = img->x_end - img->x_start;
+	image_y_size = img->y_end - img->y_start;
+	void *image = mlx_new_image(img->vars->mlx, image_x_size, image_y_size);
 	buffer = mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
 	
 	int currentPixel;
@@ -43,7 +49,7 @@ void	*construct_image(void *imgtp)
 				r = r * log(log(fabs(sqrt(x*x + y*y)) / log(r)));
 				color = create_trgb(0, r * 5, r * 2, r);
 			}
-			currentPixel = (y * line_bytes + x * 4);
+			currentPixel = (y * line_bytes + x * 4) % ((image_x_size) * (image_y_size ) * 4);
 			if (endian == 1)
 			{
 				buffer[currentPixel] = color >> 24;
@@ -58,11 +64,11 @@ void	*construct_image(void *imgtp)
 				buffer[currentPixel + 2] = color >> 16;
 				buffer[currentPixel + 3] = color >> 24;
 			}
+
 			y++;
 		}
 		x++;
 	}
-	printf("BUFFER %s\n", buffer);
-	mlx_put_image_to_window(img->vars->mlx, img->vars->win, image, 0, 0);
+	mlx_put_image_to_window(img->vars->mlx, img->vars->win, image, img->x_start, img->y_start);
 	return image;
 }
