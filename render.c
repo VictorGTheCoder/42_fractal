@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:10:51 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/12/09 16:24:27 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:57:53 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	*construct_image(void *imgtp)
 		y = img->y_start;
 		while (y < img->y_end)
 		{
-			r = julia(x, y, img->c);
+			r = manderbrot(x, y);
+			//r = julia(x, y, img->c);
 			if (r == -1)
 				 color = create_trgb(0, 0, 0, 0);
 			else

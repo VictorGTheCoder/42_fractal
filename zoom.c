@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:20:37 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/12/06 17:36:20 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/12/12 17:06:48 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@ t_z pixel_in_complex(int x, int y, int zoom_ratio)
     return (c);
 }
 
-int zoom(char c, t_mi *mi)
+int zoom(char c, t_vars *vars)
 {
     //centreX = mi->mp.x;
     //centreY = mi->mp.y;
+    //t_mp mp = get_mouse_position(vars);
     if (c == 'f')
     {
         zoom_ratio++;
+        //centreX = mp.x;
     }
 
     if (c == 'b')
@@ -37,12 +39,16 @@ int zoom(char c, t_mi *mi)
         if (zoom_ratio == 1)
             return (0);
         else
+        {
             zoom_ratio--;
+            //centreY = mp.y;
+        }
+            
     }
     return (0);
 }
 
-int	mouse_hook(int key, t_mi *mi)
+int	mouse_hook(int key, t_vars *vars)
 {
 
 	
@@ -54,13 +60,13 @@ int	mouse_hook(int key, t_mi *mi)
 	}
     if (key == 4)
 	{
-        zoom('b', mi);
+        zoom('b', vars);
 		printf("ZOOMB\n");
 		return (2);
 	}
     if (key == 5)
 	{
-        zoom('f', mi);
+        zoom('f', vars);
 		printf("ZOOMF\n");
 		return (5);
 	}

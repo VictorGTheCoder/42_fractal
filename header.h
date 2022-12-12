@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 15:42:56 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/12/09 15:55:17 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/12/12 17:03:25 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@
 # include <pthread.h>
 #include "../42_fractal/minilibx_opengl/mlx.h"
 
-# define WIDTH	700
-# define HEIGHT 700
+# define WIDTH	1000
+# define HEIGHT 1000
 
 # define planComplexX 2
 # define planComplexY 2
 
 
-# define maxIter 100
+# define maxIter 200
 
 # define KEY_LEFT   123
 # define KEY_RIGHT  124
@@ -73,7 +73,7 @@ int manderbrot(int x, int y);
 int julia(int x, int y, t_z c);
 int	create_trgb(int t, int r, int g, int b);
 
-int	mouse_hook(int key, t_mi *mi);
+int	mouse_hook(int key, t_vars *vars);
 t_mp get_mouse_position(t_vars *vars);
 void	*construct_image(void *img);
 
