@@ -6,14 +6,14 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:07:35 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/12/12 16:59:19 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/12/12 18:14:02 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-int zoom_ratio = 1;
-int centreX = 0;
-int centreY = 0;
+double zoom_ratio = 1;
+double centreX = 0;
+double centreY = 0;
 
 int	create_trgb(int t, int r, int g, int b)
 {
@@ -27,6 +27,23 @@ int key_is_pressed(int key, t_vars *vars)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
 		exit(1);
+	}
+	if (key == KEY_LEFT)
+	{
+		
+		centreX -= 0.1/zoom_ratio;
+	}
+	if (key == KEY_RIGHT)
+	{
+		centreX += 0.1/zoom_ratio;
+	}
+	if (key == KEY_DOWN)
+	{
+		centreY += 0.1/zoom_ratio;
+	}
+	if (key == KEY_UP)
+	{
+		centreY -= 0.1/zoom_ratio;
 	}
 	return (0);
 }
@@ -105,7 +122,8 @@ int	loop(t_vars *vars)
 	int	y = 0;
 
 	mp = get_mouse_position(vars);
-	c = pixel_in_complex(mp.x, mp.y, zoom_ratio);
+	c = pixel_in_complex(mp.x, mp.y);
+	printf("%f\n", zoom_ratio);
 	//printf("Mouse Position x: %d, y :%d\n", mp.x, mp.y);
 	//printf("Complex Plan Position x: %f, y :%f\n", c.a, c.b);
 	
@@ -115,7 +133,7 @@ int	loop(t_vars *vars)
 
 int main(int argc, char const *argv[])
 {
-	float   color;
+	double   color;
 	t_vars vars;
 	void	*img;
 	t_z 	c;

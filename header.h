@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 15:42:56 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/12/12 17:03:25 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/12/12 18:26:52 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <pthread.h>
 #include "../42_fractal/minilibx_opengl/mlx.h"
 
-# define WIDTH	1000
-# define HEIGHT 1000
+# define WIDTH	500
+# define HEIGHT 500
 
 # define planComplexX 2
 # define planComplexY 2
@@ -36,15 +36,23 @@
 # define KEY_SPACE  49
 # define KEY_ESCAPE 53
 
-typedef struct	s_vars {
+typedef struct	s_vars
+{
 	void	*mlx;
 	void	*win;
 }	t_vars;
 
+typedef struct	t_zoominfo
+{
+	double	zoom_ratio;
+	double	zoomX;
+	double	zoomY;
+}	t_zi;
+
 typedef struct z_complex
 {
-	float	a;
-	float	b;
+	double	a;
+	double	b;
 }	t_z;
 
 typedef struct mouse_pos
@@ -77,6 +85,6 @@ int	mouse_hook(int key, t_vars *vars);
 t_mp get_mouse_position(t_vars *vars);
 void	*construct_image(void *img);
 
-t_z pixel_in_complex(int x, int y, int zoom_ratio);
+t_z pixel_in_complex(int x, int y);
 
 #endif

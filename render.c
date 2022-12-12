@@ -6,11 +6,13 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:10:51 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/12/12 16:57:53 by vgiordan         ###   ########.fr       */
+/*   Updated: 2022/12/12 18:17:19 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+extern double centreX;
+extern double centreY;
 
 void	*construct_image(void *imgtp)
 {
@@ -21,7 +23,7 @@ void	*construct_image(void *imgtp)
 	int endian;
 	char	*buffer;
 	int color;
-	int r;
+	double r;
 	int image_x_size;
 	int image_y_size;
 
@@ -34,6 +36,9 @@ void	*construct_image(void *imgtp)
 	int x;
 	int y;
 	x = img->x_start;
+/*	t_z z = pixel_in_complex(img->c.a, img->c.b);
+	centreX = z.a;
+	centreY = z.b;*/
 	if (pixel_bits != 32)
 		color = mlx_get_color_value(img->vars->mlx, color);
 	while (x < img->x_end)
@@ -47,8 +52,13 @@ void	*construct_image(void *imgtp)
 				 color = create_trgb(0, 0, 0, 0);
 			else
 			{
-				r = r * log(log(fabs(sqrt(x*x + y*y)) / log(r)));
-				color = create_trgb(0, r * 5, r * 2, r);
+				//double smoothed = log2(log2(x * x + y * y) / 2);  // log_2(log_2(|p|))
+				//int colorI = (int)(sqrt(r + 10 - smoothed) * 256) % 2048;
+
+				//r = r * log(log(fabs(sqrt(x*x + y*y)) / log(r)));
+				//color = create_trgb(0, 10 * log(r * 3), 100* log(r * 2), 1000*log(r));
+				//color = (int)(0xFFFFFF) / 2048 * colorI;
+				color = create_trgb(0, 255 * r / maxIter, 255 * r / maxIter / 2, 255 * r / maxIter / 3);
 			}
 			currentPixel = (y * line_bytes + x * 4) % ((image_x_size) * (image_y_size ) * 4);
 			if (endian == 1)

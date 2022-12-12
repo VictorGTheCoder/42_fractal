@@ -16,7 +16,7 @@
 NSOpenGLPixelFormatAttribute pfa_attrs_opengl[] =
   {
     NSOpenGLPFADepthSize, 32,
-    NSOpenGLPFAfloatBuffer,
+    NSOpenGLPFAdoubleBuffer,
     NSOpenGLPFAOpenGLProfile, NSOpenGLProfileVersion4_1Core,
     0
   };
