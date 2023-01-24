@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:10:51 by vgiordan          #+#    #+#             */
-/*   Updated: 2022/12/12 18:17:19 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:39:51 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	*construct_image(void *imgtp)
 				//r = r * log(log(fabs(sqrt(x*x + y*y)) / log(r)));
 				//color = create_trgb(0, 10 * log(r * 3), 100* log(r * 2), 1000*log(r));
 				//color = (int)(0xFFFFFF) / 2048 * colorI;
-				color = create_trgb(0, 255 * r / maxIter, 255 * r / maxIter / 2, 255 * r / maxIter / 3);
+				color = create_trgb(0, 5*log(r), 30 * log(r), 50 * log(r));
 			}
 			currentPixel = (y * line_bytes + x * 4) % ((image_x_size) * (image_y_size ) * 4);
 			if (endian == 1)
