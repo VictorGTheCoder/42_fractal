@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 15:42:56 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/01/24 16:49:02 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:55:42 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <math.h>
 # include <pthread.h>
-#include "../42_fractal/mlx/mlx.h"
+#include "../42_fractalb/mlx/mlx.h"
 
 # define WIDTH	500
 # define HEIGHT 500
