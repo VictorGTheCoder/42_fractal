@@ -6,19 +6,16 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:10:51 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/01/24 16:39:51 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/20 17:03:53 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-extern double centreX;
-extern double centreY;
 
-void	*construct_image(void *imgtp)
+void	*construct_image(t_utils *utils)
 {
 	int pixel_bits;
 	t_image *img;
-	img = imgtp;
 	int line_bytes;
 	int endian;
 	char	*buffer;
@@ -26,19 +23,17 @@ void	*construct_image(void *imgtp)
 	double r;
 	int image_x_size;
 	int image_y_size;
-
-	image_x_size = img->x_end - img->x_start;
-	image_y_size = img->y_end - img->y_start;
-	void *image = mlx_new_image(img->vars->mlx, image_x_size, image_y_size);
-	buffer = mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
-	
+	void *image;
 	int currentPixel;
 	int x;
 	int y;
+
+	img = &(utils->img);
+	image_x_size = img->x_end - img->x_start;
+	image_y_size = img->y_end - img->y_start;
+	image = mlx_new_image(img->vars->mlx, image_x_size, image_y_size);
+	buffer = mlx_get_data_addr(image, &pixel_bits, &line_bytes, &endian);
 	x = img->x_start;
-/*	t_z z = pixel_in_complex(img->c.a, img->c.b);
-	centreX = z.a;
-	centreY = z.b;*/
 	if (pixel_bits != 32)
 		color = mlx_get_color_value(img->vars->mlx, color);
 	while (x < img->x_end)
@@ -46,7 +41,7 @@ void	*construct_image(void *imgtp)
 		y = img->y_start;
 		while (y < img->y_end)
 		{
-			r = manderbrot(x, y);
+			r = manderbrot(x, y, utils);
 			//r = julia(x, y, img->c);
 			if (r == -1)
 				 color = create_trgb(0, 0, 0, 0);
@@ -75,7 +70,6 @@ void	*construct_image(void *imgtp)
 				buffer[currentPixel + 2] = color >> 16;
 				buffer[currentPixel + 3] = color >> 24;
 			}
-
 			y++;
 		}
 		x++;
