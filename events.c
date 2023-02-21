@@ -6,11 +6,16 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:46:19 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/20 16:56:52 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/21 16:23:54 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+void	onDestroy(t_utils *utils)
+{
+	exit(1);
+}
 
 int	key_pressed(int key, t_utils *utils)
 {

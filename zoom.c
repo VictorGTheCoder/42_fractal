@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:20:37 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/20 16:45:47 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/21 17:25:45 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	zoom(char c, t_utils *utils)
 {
 	if (c == 'f')
 	{
-		(utils->zpi.zoom_ratio) *= 1.2;
+		(utils->zpi.zoom_ratio) *= 1.1;
 	}
 	if (c == 'b')
 	{
 		if ((utils->zpi.zoom_ratio) > 1)
 		{
-			(utils->zpi.zoom_ratio) /= 1.2;
+			(utils->zpi.zoom_ratio) /= 1.1;
 		}
 	}
 }

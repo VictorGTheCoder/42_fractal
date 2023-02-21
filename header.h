@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 15:42:56 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/20 16:54:42 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/21 18:05:07 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <pthread.h>
 #include "../42_fractalb/mlx/mlx.h"
 
-# define WIDTH	500
-# define HEIGHT 500
+# define WIDTH	700
+# define HEIGHT 700
 
 # define planComplexX 2
 # define planComplexY 2
@@ -35,6 +35,9 @@
 # define KEY_UP     126
 # define KEY_SPACE  49
 # define KEY_ESCAPE 53
+
+# define WHITE 0xFFFFFF
+# define DARK 0x000000
 
 typedef struct	s_vars
 {
@@ -61,44 +64,49 @@ typedef struct mouse_pos
 	int	y;
 }	t_mp;
 
-typedef struct mouse_info
-{
-	t_vars vars;
-	t_mp mp;
-}	t_mi;
-
 typedef struct imageconstruct
 {
-	int	x_start;
-	int	y_start;
-	int	x_end;
-	int	y_end;
-	t_vars *vars;
-	t_z	c;
+	int		x_start;
+	int		y_start;
+	int		x_end;
+	int		y_end;
+	int		image_x_size;
+	int		image_y_size;
+	int		color;
+	int		fps;
+	int		current_pixel;
+	int		endian;
+	int		line_bytes;
+	void	*image;
+	int		pixel_bits;
 }	t_image;
 
 typedef struct all_utils
 {
 	t_vars	vars;
 	t_zpi	zpi;
-	t_mi	mi;
 	t_z		c;
 	t_mp	mp;
 	t_image img;
+	int		fract;
 } t_utils;
 
 /*--------------------events-------------------*/
 
-int	key_pressed(int key, t_utils *utils);
+int		key_pressed(int key, t_utils *utils);
+void	onDestroy(t_utils *utils);
 
 
 /*--------------------utils.c------------------*/
 
-t_mp get_mouse_position(t_vars *vars);
+void	get_mouse_position(t_utils *utils);
 int	create_trgb(int t, int r, int g, int b);
+char	*ft_itoa(int n);
+int	ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t	ft_strlen(const char *str);
 
 void utils_init(t_utils *utils);
-int manderbrot(int x, int y, t_utils *utils);
+int mandelbrot(int x, int y, t_utils *utils);
 int julia(int x, int y, t_utils *utils);
 int	create_trgb(int t, int r, int g, int b);
 
@@ -106,5 +114,6 @@ int	mouse_event(int key, int x, int y, t_utils *utils);
 void	*construct_image(t_utils *utils);
 
 t_z pixel_in_complex(int x, int y, t_zpi zpi);
+
 
 #endif
