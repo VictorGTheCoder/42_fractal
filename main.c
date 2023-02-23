@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:07:35 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/23 13:50:47 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:25:41 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	gui(t_utils *utils)
 		ft_itoa(utils->zpi.zoom_ratio));
 	mlx_string_put(utils->vars.mlx, utils->vars.win, 150, 10, WHITE, "Iter: ");
 	mlx_string_put(utils->vars.mlx, utils->vars.win, 200, 10, WHITE,
-		ft_itoa(maxIter));
+		ft_itoa(utils->max_iter));
 }
 
 int	loop(t_utils *utils)
@@ -72,11 +72,10 @@ int	main(int argc, char const *argv[])
 			utils.fract = 0;
 		else if (ft_strncmp(argv[1], "julia", ft_strlen(argv[1])) == 0)
 			utils.fract = 1;
-		else if (ft_strncmp(argv[1], "3", ft_strlen(argv[1])) == 0)
-		{
+		else if (ft_strncmp(argv[1], "swiss", ft_strlen(argv[1])) == 0)
 			utils.fract = 2;
-		}
-			
+		else if (ft_strncmp(argv[1], "b", ft_strlen(argv[1])) == 0)
+			utils.fract = 3;
 		else
 		{
 			ft_putstr_fd("--> mandelbrot\n--> julia\n--> last", 1);

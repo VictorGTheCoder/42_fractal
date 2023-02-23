@@ -119,17 +119,14 @@ int	mipng_fill_img(void *img, unsigned char *buf, png_info_t *pi)
   unsigned char *ibuf;
 
   ibuf = (unsigned char *)mlx_get_data_addr(img, &bpp, &iline, &endian);
-  //  iline = img->width * UNIQ_BPP;
-  // ilen = img->width * img->height * UNIQ_BPP;
   ilen = iline*pi->height;
   ipos = 0;
-  blen = pi->width * pi->height * pi->bpp + pi->height;  // ??? why + pi->height ??
+  blen = pi->width * pi->height * pi->bpp + pi->height; 
   bpos = 0;
   while (ipos < ilen && bpos < blen)
     {
       if (ipos % iline == 0)
 	{
-	  // printf("ipos %d iline %d pi->width %d bpos %d\n", ipos, iline, pi->width, bpos);
 	  if ((current_filter = buf[bpos++]) > 4)
 	    {  
 	    return (ERR_DATA_FILTER);

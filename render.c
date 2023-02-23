@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 14:10:51 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/23 14:28:35 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:45:49 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,15 @@
 void	color_manage(t_utils *utils, int x, int y)
 {
 	double	r;
-	t_z		centre;
 
-	centre.a = WIDTH / 2;
-	centre.b = HEIGHT / 2;
 	if (utils->fract == 0)
 		r = mandelbrot(x, y, utils);
 	else if (utils->fract == 1)
 		r = julia(x, y, utils);
+	else if (utils->fract == 2)
+		r = croix_suisse(utils, x, y, utils->max_iter);
 	else
-		r = croix_suisse(utils, x, y, centre, 4, maxIter);
+		r = burning_ship(x, y, utils);
 	if (r == -1)
 		utils->img.color = create_trgb(0, 0, 0, 0);
 	else if (r == -2)
@@ -32,7 +31,8 @@ void	color_manage(t_utils *utils, int x, int y)
 	else if (r == -3)
 		utils->img.color = create_trgb(0, 255, 255, 255);
 	else
-		utils->img.color = create_trgb(0, 5 * log(r), 20 * log(r), 50 * log(r));
+		utils->img.color = create_trgb(0, utils->color.r * log(r),
+				utils->color.g * log(r), utils->color.b * log(r));
 }
 
 void	fill_buffer(t_utils *utils, int endian, int current_pixel, char *buffer)
@@ -59,7 +59,6 @@ void	*construct_image(t_utils *u)
 		u->img.color = mlx_get_color_value(u->vars.mlx, u->img.color);
 	while (++x < u->img.x_end)
 	{
-
 		y = u->img.y_start - 1;
 		while (++y < u->img.y_end)
 		{

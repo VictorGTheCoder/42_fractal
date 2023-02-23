@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:13:23 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/22 15:42:11 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/23 15:24:14 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	julia(int x, int y, t_utils *utils)
 	z = pixel_in_complex(x, y, (utils->zpi));
 	c = pixel_in_complex(utils->mp.x, utils->mp.y, utils->zpi);
 	i = 0;
-	while (i < maxIter)
+	while (i < utils->max_iter)
 	{
 		z = fonction(z, c);
 		i++;
@@ -60,9 +60,34 @@ int	mandelbrot(int x, int y, t_utils *utils)
 	if (((c.a + 1) * (c.a + 1) + c.b * c.b) < 0.0625)
 		return (-2);
 	i = 0;
-	while (i < (maxIter))
+	while (i < (utils->max_iter))
 	{
 		z = fonction(z, c);
+		i++;
+		d = z.a * z.a + z.b * z.b;
+		if (d > 4)
+			return (i);
+	}
+	return (-1);
+}
+
+int	burning_ship(int x, int y, t_utils *utils)
+{
+	t_z		c;
+	t_z		z;
+	int		i;
+	double	d;
+	double	p;
+
+	z.a = 0;
+	z.b = 0;
+	c = pixel_in_complex(x, y, (utils->zpi));
+	i = 0;
+	while (i < (utils->max_iter))
+	{
+		z = fonction(z, c);
+		z.a = fabs(z.a);
+		z.b = fabs(z.b);
 		i++;
 		d = z.a * z.a + z.b * z.b;
 		if (d > 4)
