@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:57:31 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/22 12:42:37 by vgiordan         ###   ########.fr       */
+/*   Created: 2022/10/25 14:09:29 by marvin            #+#    #+#             */
+/*   Updated: 2022/11/08 14:07:25 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
-int	create_trgb(int t, int r, int g, int b)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
-}
+	size_t		i;
+	size_t		j;
 
-void	get_mouse_position(t_utils *utils)
-{
-	int		x;
-	int		y;
-
-	mlx_mouse_get_pos(utils->vars.win, &x, &y);
-	utils->mp.x = x;
-	utils->mp.y = y;
+	i = 0;
+	j = 0;
+	if (little[0] == '\0')
+		return ((char *)big);
+	while (big[i] && i < len)
+	{
+		while (big[i + j] == little[j] && little[j] && i + j < len)
+			j++;
+		if (little[j] == '\0')
+			return ((char *)&big[i]);
+		i++;
+		j = 0;
+	}
+	return (NULL);
 }

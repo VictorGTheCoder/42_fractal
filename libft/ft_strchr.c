@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:57:31 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/22 12:42:37 by vgiordan         ###   ########.fr       */
+/*   Created: 2022/10/27 01:00:01 by marvin            #+#    #+#             */
+/*   Updated: 2022/11/08 14:33:20 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
-int	create_trgb(int t, int r, int g, int b)
+char	*ft_strchr(const char *str, int c)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
-}
-
-void	get_mouse_position(t_utils *utils)
-{
-	int		x;
-	int		y;
-
-	mlx_mouse_get_pos(utils->vars.win, &x, &y);
-	utils->mp.x = x;
-	utils->mp.y = y;
+	while (*str)
+	{
+		if (*str == (char)c)
+			return ((char *) str);
+		str++;
+	}
+	if ((char)c == *str)
+		return ((char *)str);
+	return (NULL);
 }

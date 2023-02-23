@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:07:35 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/21 18:08:17 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/23 13:50:47 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	threading(t_utils	*utils)
 	return (0);
 }
 
-void gui(t_utils *utils)
+void	gui(t_utils *utils)
 {
 	mlx_string_put(utils->vars.mlx, utils->vars.win, 10, 10, WHITE, "FPS");
 	mlx_string_put(utils->vars.mlx, utils->vars.win, 70, 10, WHITE, "ZOOM");
@@ -37,7 +37,6 @@ int	loop(t_utils *utils)
 	int		y;
 	clock_t	t;
 
-	
 	x = 0;
 	y = 0;
 	t = clock();
@@ -56,7 +55,7 @@ void	event_handler(t_utils *utils)
 {
 	mlx_mouse_hook(utils->vars.win, mouse_event, utils);
 	mlx_loop_hook(utils->vars.mlx, loop, utils);
-	mlx_hook(utils->vars.win, 17, 0, onDestroy, utils);
+	mlx_hook(utils->vars.win, 17, 0, on_destroy, utils);
 	mlx_hook(utils->vars.win, 2, 0, key_pressed, utils);
 	mlx_loop(utils->vars.mlx);
 }
@@ -65,23 +64,24 @@ int	main(int argc, char const *argv[])
 {
 	t_utils	utils;
 
-	char	*str;
-
-	str = "3";
 	if (argc != 2)
-	{
-		return(0);
-	}
+		return (0);
 	else
 	{
-		if (ft_strncmp(argv[2], str, ft_strlen(argv[2])))
+		if (ft_strncmp(argv[1], "mandelbrot", ft_strlen(argv[1])) == 0)
 			utils.fract = 0;
-		else if (ft_strncmp(argv[2], "julia", ft_strlen(argv[2])))
+		else if (ft_strncmp(argv[1], "julia", ft_strlen(argv[1])) == 0)
 			utils.fract = 1;
-		else if (ft_strncmp(argv[2], str, ft_strlen(argv[2])))
+		else if (ft_strncmp(argv[1], "3", ft_strlen(argv[1])) == 0)
+		{
 			utils.fract = 2;
+		}
+			
 		else
+		{
+			ft_putstr_fd("--> mandelbrot\n--> julia\n--> last", 1);
 			return (0);
+		}
 		utils_init(&utils);
 		event_handler(&utils);
 	}

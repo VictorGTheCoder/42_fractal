@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:57:31 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/22 12:42:37 by vgiordan         ###   ########.fr       */
+/*   Created: 2022/09/12 18:58:49 by vgiordan          #+#    #+#             */
+/*   Updated: 2022/11/08 14:33:28 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
-int	create_trgb(int t, int r, int g, int b)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
-}
+	int		s_s1;
+	int		s_s2;
+	int		i;
+	char	*result;
 
-void	get_mouse_position(t_utils *utils)
-{
-	int		x;
-	int		y;
-
-	mlx_mouse_get_pos(utils->vars.win, &x, &y);
-	utils->mp.x = x;
-	utils->mp.y = y;
+	i = 0;
+	s_s1 = ft_strlen(s1);
+	s_s2 = ft_strlen(s2);
+	result = malloc((s_s1 + s_s2 + 1) * sizeof(char));
+	if (!result)
+		return (NULL);
+	while (*s1)
+		result[i++] = *s1++;
+	while (*s2)
+		result[i++] = *s2++;
+	result[i] = '\0';
+	return (result);
 }

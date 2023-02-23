@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:57:31 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/22 12:42:37 by vgiordan         ###   ########.fr       */
+/*   Created: 2022/09/12 16:16:57 by vgiordan          #+#    #+#             */
+/*   Updated: 2022/11/08 14:07:25 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
-int	create_trgb(int t, int r, int g, int b)
+char	*ft_strdup(char *src)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
-}
+	char	*str;
+	int		i;
 
-void	get_mouse_position(t_utils *utils)
-{
-	int		x;
-	int		y;
-
-	mlx_mouse_get_pos(utils->vars.win, &x, &y);
-	utils->mp.x = x;
-	utils->mp.y = y;
+	i = 0;
+	str = (char *)malloc((ft_strlen(src) + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	while (*src)
+		str[i++] = *src++;
+	str[i] = '\0';
+	return (str);
 }

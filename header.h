@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 15:42:56 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/21 18:05:07 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:22:10 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,18 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <math.h>
-# include <pthread.h>
-#include "../42_fractalb/mlx/mlx.h"
+#include <pthread.h>
+# include "../42_fractalb/mlx/mlx.h"
+# include "../libft/libft.h"
 
-# define WIDTH	700
-# define HEIGHT 700
+# define WIDTH	500
+# define HEIGHT 500
 
 # define planComplexX 2
 # define planComplexY 2
 
 
-# define maxIter 500
+# define maxIter 5
 
 # define KEY_LEFT   123
 # define KEY_RIGHT  124
@@ -81,6 +82,13 @@ typedef struct imageconstruct
 	int		pixel_bits;
 }	t_image;
 
+typedef struct carre
+{
+	double	x_start;
+	double y_start;
+	double x_end;
+	double y_end;
+} t_carre;
 typedef struct all_utils
 {
 	t_vars	vars;
@@ -88,13 +96,14 @@ typedef struct all_utils
 	t_z		c;
 	t_mp	mp;
 	t_image img;
+	t_carre	carre;
 	int		fract;
 } t_utils;
 
 /*--------------------events-------------------*/
 
 int		key_pressed(int key, t_utils *utils);
-void	onDestroy(t_utils *utils);
+void	on_destroy(t_utils *utils);
 
 
 /*--------------------utils.c------------------*/
@@ -108,12 +117,13 @@ size_t	ft_strlen(const char *str);
 void utils_init(t_utils *utils);
 int mandelbrot(int x, int y, t_utils *utils);
 int julia(int x, int y, t_utils *utils);
+int croix_suisse(t_utils *utils, int x, int y, t_z centre, int ci, int i);
 int	create_trgb(int t, int r, int g, int b);
 
 int	mouse_event(int key, int x, int y, t_utils *utils);
 void	*construct_image(t_utils *utils);
 
 t_z pixel_in_complex(int x, int y, t_zpi zpi);
-
+int get_chunk(int x, int y, t_utils *utils, int i);
 
 #endif

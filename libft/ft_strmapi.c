@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 16:57:31 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/22 12:42:37 by vgiordan         ###   ########.fr       */
+/*   Created: 2022/10/25 12:26:01 by marvin            #+#    #+#             */
+/*   Updated: 2022/11/08 16:46:13 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#include "libft.h"
 
-int	create_trgb(int t, int r, int g, int b)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	return (t << 24 | r << 16 | g << 8 | b);
-}
+	unsigned int	i;
+	char			*result;
 
-void	get_mouse_position(t_utils *utils)
-{
-	int		x;
-	int		y;
-
-	mlx_mouse_get_pos(utils->vars.win, &x, &y);
-	utils->mp.x = x;
-	utils->mp.y = y;
+	i = 0;
+	result = malloc((ft_strlen(s) + 1) * sizeof(char));
+	if (!result)
+		return (NULL);
+	while (s[i])
+	{
+		result[i] = f(i, s[i]);
+		i++;
+	}
+	result[i] = '\0';
+	return (result);
 }
