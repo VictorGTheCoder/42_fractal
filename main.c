@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 14:07:35 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/23 15:25:41 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:32:10 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	loop(t_utils *utils)
 	x = 0;
 	y = 0;
 	t = clock();
-	get_mouse_position(&(utils->vars));
+	get_mouse_position(utils);
 	utils->img.fps = t;
 	threading(utils);
 	t = clock() - t;
@@ -54,9 +54,9 @@ int	loop(t_utils *utils)
 void	event_handler(t_utils *utils)
 {
 	mlx_mouse_hook(utils->vars.win, mouse_event, utils);
-	mlx_loop_hook(utils->vars.mlx, loop, utils);
 	mlx_hook(utils->vars.win, 17, 0, on_destroy, utils);
 	mlx_hook(utils->vars.win, 2, 0, key_pressed, utils);
+	mlx_loop_hook(utils->vars.mlx, loop, utils);
 	mlx_loop(utils->vars.mlx);
 }
 
@@ -65,7 +65,7 @@ int	main(int argc, char const *argv[])
 	t_utils	utils;
 
 	if (argc != 2)
-		return (0);
+		ft_putstr_fd("-->mandelbrot\n-->julia\n-->swiss\n-->burning_ship", 1);
 	else
 	{
 		if (ft_strncmp(argv[1], "mandelbrot", ft_strlen(argv[1])) == 0)
@@ -74,11 +74,11 @@ int	main(int argc, char const *argv[])
 			utils.fract = 1;
 		else if (ft_strncmp(argv[1], "swiss", ft_strlen(argv[1])) == 0)
 			utils.fract = 2;
-		else if (ft_strncmp(argv[1], "b", ft_strlen(argv[1])) == 0)
+		else if (ft_strncmp(argv[1], "burning_ship", ft_strlen(argv[1])) == 0)
 			utils.fract = 3;
 		else
 		{
-			ft_putstr_fd("--> mandelbrot\n--> julia\n--> last", 1);
+			ft_putstr_fd("-->mandelbrot\n-->julia\n-->swiss\n-->burning_ship", 1);
 			return (0);
 		}
 		utils_init(&utils);

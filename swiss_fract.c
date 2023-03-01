@@ -6,13 +6,13 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:01:47 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/23 17:56:42 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/03/01 13:54:03 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	point_is_in_a_corner_square(t_utils *utils, int x, int y, int i)
+static int	point_is_in_a_corner_square(t_utils *utils, int x, int y, int i)
 {
 	if (x <= (utils->carre.x_end - utils->carre.x_start)
 		* 2 / 5 + utils->carre.x_start)
@@ -37,7 +37,7 @@ int	point_is_in_a_corner_square(t_utils *utils, int x, int y, int i)
 	return (-1);
 }
 
-int	point_is_in_side(t_utils *utils, int x, int y, int i)
+static int	point_is_in_side(t_utils *utils, int x, int y, int i)
 {
 	if (x > ((utils->carre.x_end - utils->carre.x_start) * 2 / 5)
 		+ utils->carre.x_start && x < ((utils->carre.x_end

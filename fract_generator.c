@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:13:23 by vgiordan          #+#    #+#             */
-/*   Updated: 2023/02/23 15:24:14 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:39:28 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,14 @@ int	julia(int x, int y, t_utils *utils)
 	double	d;
 	t_z		c;
 
-	z = pixel_in_complex(x, y, (utils->zpi));
-	c = pixel_in_complex(utils->mp.x, utils->mp.y, utils->zpi);
+	z = pixel_in_complex(x, y, (utils));
+	if (utils->track)
+	{
+		c = pixel_in_complex(utils->mp.x, utils->mp.y, utils);
+		utils->c = c;
+	}
+	else
+		c = utils->c;
 	i = 0;
 	while (i < utils->max_iter)
 	{
@@ -53,7 +59,7 @@ int	mandelbrot(int x, int y, t_utils *utils)
 
 	z.a = 0;
 	z.b = 0;
-	c = pixel_in_complex(x, y, (utils->zpi));
+	c = pixel_in_complex(x, y, (utils));
 	p = sqrt((c.a - 0.25) * (c.a - 0.25) + c.b * c.b);
 	if (c.a < (p - 2.0 * p * p + 0.25))
 		return (-2);
@@ -81,7 +87,7 @@ int	burning_ship(int x, int y, t_utils *utils)
 
 	z.a = 0;
 	z.b = 0;
-	c = pixel_in_complex(x, y, (utils->zpi));
+	c = pixel_in_complex(x, y, (utils));
 	i = 0;
 	while (i < (utils->max_iter))
 	{
