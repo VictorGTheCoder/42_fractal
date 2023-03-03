@@ -1,8 +1,8 @@
 # 42_fractal
 4 FRACTAL (MANDELBROT JULIA BURNING-SHIP SWISS)<br />
 MOVE with WASD or Arrow <br />
-INCREMENT E (10) D(1)  <br />
-DECREMENT R (10) F(1) <br />
+INCREMENT ITERATION E (10) D(1)  <br />
+DECREMENT ITERATION R (10) F(1) <br />
 SWITCH COLOR with RIGHT CLICK (3 diffents colors) <br />
 SELECT / DESELECT JULIA with SPACE <br />
 
