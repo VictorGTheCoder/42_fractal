@@ -1,12 +1,15 @@
 # 42_fractal
-MOVE with WASD or Arrow \n
-INCREMENT E (10) d(1) \n
-DECREMENT R (10) e(1)
-SWITCH COLOR with RIGHT CLICK (3 diffents colors)
-SELECT / DESELCT with SPACE
+MOVE with WASD or Arrow <br />
+INCREMENT E (10) D(1)  <br />
+DECREMENT R (10) F(1) <br />
+SWITCH COLOR with RIGHT CLICK (3 diffents colors) <br />
+SELECT / DESELCT with SPACE <br />
 
 # Mandelbrot
 <img width="791" alt="Screen Shot 2023-03-03 at 2 12 23 PM" src="https://user-images.githubusercontent.com/112464371/222729495-8f15d59c-7143-4bbe-887b-96e2ea11c138.png">
 
 # Swiss
 <img width="999" alt="Screen Shot 2023-03-03 at 2 13 19 PM" src="https://user-images.githubusercontent.com/112464371/222729514-d8407ddc-3130-4d80-8a55-497edc561ce2.png">
+
+# Julia
+<img width="914" alt="Screen Shot 2023-03-03 at 2 26 21 PM" src="https://user-images.githubusercontent.com/112464371/222731761-e9cc007e-4270-4f14-9349-338e8f558140.png">
