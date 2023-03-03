@@ -1,6 +1,6 @@
 # 42_fractal
-MOVE with WASD or Arrow
-INCREMENT E (10) d(1)
+MOVE with WASD or Arrow \n
+INCREMENT E (10) d(1) \n
 DECREMENT R (10) e(1)
 SWITCH COLOR with RIGHT CLICK (3 diffents colors)
 SELECT / DESELCT with SPACE
