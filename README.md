@@ -14,3 +14,4 @@ SELECT / DESELECT JULIA with SPACE <br />
 
 # Julia
 <img width="914" alt="Screen Shot 2023-03-03 at 2 26 21 PM" src="https://user-images.githubusercontent.com/112464371/222731761-e9cc007e-4270-4f14-9349-338e8f558140.png">
+<img src="https://t.bkit.co/w_6407531ce62cc.gif" />
